@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SelectableOption.Views.LandingPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="LandingPage">
+             
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="SectionTemplate">
+                <Border WidthRequest="120"
+                        StrokeShape="RoundRectangle 20"
+                        StrokeThickness="0"
+                        BackgroundColor="#F0F0F1">
+                    <Label x:Name="label"
+                           Text="{TemplateBinding Content}"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                                Value="#4C65FF"/>
+                                        <Setter TargetName="label"
+                                                Property="Label.Opacity"
+                                                Value="1"/>
+                                        <Setter TargetName="label"
+                                                Property="Label.TextColor"
+                                                Value="White"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor"
+                                                Value="#F0F0F1"/>
+                                        <Setter TargetName="label"
+                                                Property="Label.Opacity"
+                                                Value="0.6"/>
+                                        <Setter TargetName="label"
+                                                Property="Label.TextColor"
+                                                Value="Black"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+
+        <ScrollView
+            Orientation="Horizontal"
+            HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout
+                x:Name="SectionList"
+                Margin="0,20,0,0"
+                BindableLayout.ItemsSource="{Binding Sections}"
+                Spacing="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding .}" ControlTemplate="{StaticResource SectionTemplate}"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+
+      
+
+    </StackLayout>
+</ContentPage>
